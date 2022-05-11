@@ -21,6 +21,7 @@ const allowedCors = [
 
 app.use((req, res, next) => {
   const { origin } = req.headers;
+  console.log(origin);
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Credentials', true);
@@ -33,7 +34,8 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', requestHeaders);
     return res.end();
   }
-  return next();
+  next();
+  return null;
 });
 
 app.use(bodyParser.json());
