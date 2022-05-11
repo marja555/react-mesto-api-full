@@ -19,6 +19,13 @@ const allowedCors = [
   'http://mesto.students.nomoredomains.xyz/',
 ];
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+mongoose.connect('mongodb://localhost:27017/mestodb', {
+  useNewUrlParser: true,
+});
+
 app.use((req, res, next) => {
   const { origin } = req.headers;
   console.log(origin);
@@ -36,13 +43,6 @@ app.use((req, res, next) => {
   }
   next();
   return null;
-});
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-mongoose.connect('mongodb://localhost:27017/mestodb', {
-  useNewUrlParser: true,
 });
 
 const { login, createUser } = require('./controllers/user');
