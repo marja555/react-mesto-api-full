@@ -11,6 +11,31 @@ const bodyParser = require('body-parser');
 const NotFoundError = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
+const allowedCors = [
+  'https://praktikum.tk',
+  'http://praktikum.tk',
+  'localhost:3000',
+  'https://mesto.students.nomoredomains.xyz/',
+  'http://mesto.students.nomoredomains.xyz/',
+];
+
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', true);
+  }
+  const { method } = req;
+  const requestHeaders = req.headers['access-control-request-headers'];
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+  if (method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+    res.header('Access-Control-Allow-Headers', requestHeaders);
+    return res.end();
+  }
+  return next();
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
