@@ -1,0 +1,39 @@
+.auth__input {
+    border: none;
+    border-bottom: 2px solid rgba(204, 204, 204, 1);
+    background-color: black;
+    width: 358px;
+    margin: 30px auto 0;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-bottom: 13px;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.21;
+    color: white;
+  }
+  
+  .auth__input:first-of-type {
+    margin-top: 50px;
+  }
+  
+  .auth__input:focus {
+    outline: none;
+    border-radius: 3px;
+    background-color: black;
+    color: white;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .auth__input {
+      max-width: 238px;
+    }
+  
+    .auth__input:first-of-type {
+      margin-top: 75px;
+    }
+  }

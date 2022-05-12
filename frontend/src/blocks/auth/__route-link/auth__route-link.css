@@ -1,0 +1,12 @@
+.auth__route-link {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.22;
+    text-decoration: none;
+    color: #fff;
+    /* padding: 0 0 46px; */
+    margin-top: 6px;
+    
+}

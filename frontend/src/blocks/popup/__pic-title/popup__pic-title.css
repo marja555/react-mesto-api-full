@@ -1,0 +1,10 @@
+.popup__pic-title {
+  padding: 5px 0 0 0;
+  margin: 0;
+  max-width: 100%;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.25;
+}
