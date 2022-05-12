@@ -15,8 +15,8 @@ const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
   'localhost:3000',
-  'https://mesto.students.nomoredomains.xyz/',
-  'http://mesto.students.nomoredomains.xyz/',
+  'https://mesto.students.nomoredomains.xyz',
+  'http://mesto.students.nomoredomains.xyz',
 ];
 
 app.use(bodyParser.json());
