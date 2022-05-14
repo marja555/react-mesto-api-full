@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 function Register(props) {
     const [email, setEmail] = useState('');
@@ -18,7 +18,7 @@ function Register(props) {
         props.onSubmit({email, password});
     }
 
-    return(
+    return props.isLoggedIn ? (<Navigate to="/" />) : (
         <div className="auth">
             <p className="auth__title">Регистрация</p>
             <form className="auth__form" onSubmit={handleSubmit}>

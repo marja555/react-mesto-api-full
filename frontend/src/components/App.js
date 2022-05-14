@@ -188,10 +188,10 @@ function App() {
               cards={cards}
             />
             <Route path="/sign-up">
-              <Register onSubmit={handleSubmitRegistration} />
+              <Register isLoggedIn={loggedIn} onSubmit={handleSubmitRegistration} />
             </Route> 
             <Route path="/sign-in">
-              <Login onSubmit={handleSubmitAuthorization} />
+              <Login isLoggedIn={loggedIn} onSubmit={handleSubmitAuthorization} />
             </Route>
           </Switch>
         </div>

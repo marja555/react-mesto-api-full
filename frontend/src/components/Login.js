@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Navigate } from "react-router-dom";
 
 function Login(props) {
     const [email, setEmail] = useState('');
@@ -17,7 +18,7 @@ function Login(props) {
         props.onSubmit({email, password});
     }
 
-    return(
+    return props.isLoggedIn ? (<Navigate to="/" />) : (
         <div className="auth">
             <h2 className="auth__title">Вход</h2>
             <form className="auth__form" onSubmit={handleSubmit}>
