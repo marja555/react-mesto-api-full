@@ -1,6 +1,7 @@
 class Api {
   constructor(address) {
     this._address = address;
+    this._token = token;
   }
 
   _handleResponse = (response) => {
