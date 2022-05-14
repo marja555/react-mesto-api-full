@@ -7,7 +7,7 @@ const {
   updateProfile,
   updateAvatar,
   getMe,
-} = require('../controllers/user');
+} = require('../controllers/users');
 
 router.get('/', getUsers);
 

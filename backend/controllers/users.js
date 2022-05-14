@@ -108,7 +108,7 @@ const getMe = (req, res, next) => {
       if (!user) {
         return next(new NotFoundError('Пользователь не найден'));
       }
-      return res.send(user);
+      return res.send(...user);
     })
     .catch(next);
 };

@@ -3,7 +3,7 @@ const { default: mongoose } = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3002 } = process.env;
 
 const app = express();
 
@@ -15,6 +15,7 @@ const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
   'localhost:3000',
+  'http://localhost:3000',
   'https://mesto.students.nomoredomains.xyz',
   'http://mesto.students.nomoredomains.xyz',
 ];
@@ -45,7 +46,7 @@ app.use((req, res, next) => {
   return null;
 });
 
-const { login, createUser } = require('./controllers/user');
+const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { handleError } = require('./errors/handleError');
 
@@ -70,8 +71,8 @@ app.post('/signup', celebrate({
 
 app.use(auth);
 
-app.use('/users', require('./routes/user'));
-app.use('/cards', require('./routes/card'));
+app.use('/users', require('./routes/users'));
+app.use('/cards', require('./routes/cards'));
 
 app.all('*', (req, res, next) => {
   next(new NotFoundError('Запрашиваемый ресурс не найден'));
