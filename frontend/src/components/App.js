@@ -127,7 +127,7 @@ function App() {
   function handleSubmitAuthorization(data) {
     auth.authorization(data)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
+        // localStorage.setItem('jwt', res.token);
         setLoggedIn(true);
         setEmail(res.email);
         history.push('/')
@@ -140,7 +140,7 @@ function App() {
   }
 
   function handleLogout() {
-    localStorage.removeItem('jwt');
+    // localStorage.removeItem('jwt');
     setLoggedIn(false);
     history.push('/sign-in');
   }
@@ -157,21 +157,17 @@ function App() {
   }, [loggedIn]);
 
   React.useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if(jwt) {
-      auth.getUser(jwt)
+      auth.getUser()
         .then((res) => {
+          console.log(res);
           if(res) {
             setEmail(res.data.email);
             setLoggedIn(true);
-            history.push('/');
-          } else {
-            localStorage.removeItem(jwt);
+            console.log(loggedIn);
           }
         })
         .catch(err => console.log(err))
-    }
-  }, [history])
+    });
   
 
   return (
