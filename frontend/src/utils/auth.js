@@ -40,7 +40,6 @@ class Auth {
         return fetch(`${this._address}/users/me`, {
             method: 'GET',
             headers: {
-                // authorization: `Bearer ${jwt}`,
                 "Content-Type": "application/json"
             },
             credentials: 'include',
@@ -48,5 +47,5 @@ class Auth {
         .then(this._handleResponse);
     }
 }
-const auth = new Auth('http://localhost:3002');
+const auth = new Auth('https://api.mesto.students.nomoredomains.xyz');
 export default auth;

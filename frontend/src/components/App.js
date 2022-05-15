@@ -81,7 +81,7 @@ function App() {
 
   function handleCardLike(card) {
     // Проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, !isLiked)
@@ -127,7 +127,6 @@ function App() {
   function handleSubmitAuthorization(data) {
     auth.authorization(data)
       .then((res) => {
-        // localStorage.setItem('jwt', res.token);
         setLoggedIn(true);
         setEmail(res.email);
         history.push('/')
@@ -140,9 +139,11 @@ function App() {
   }
 
   function handleLogout() {
-    // localStorage.removeItem('jwt');
-    setLoggedIn(false);
-    history.push('/sign-in');
+    api.logout()
+      .then(() => {
+        setLoggedIn(false);
+        history.push('/sign-in');
+      })
   }
 
   React.useEffect(() => {
@@ -159,15 +160,13 @@ function App() {
   React.useEffect(() => {
       auth.getUser()
         .then((res) => {
-          console.log(res);
           if(res) {
-            setEmail(res.data.email);
+            setEmail(res.email);
             setLoggedIn(true);
-            console.log(loggedIn);
           }
         })
         .catch(err => console.log(err))
-    });
+    }, []);
   
 
   return (

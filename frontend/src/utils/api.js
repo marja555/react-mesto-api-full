@@ -1,7 +1,6 @@
 class Api {
   constructor(address) {
     this._address = address;
-    // this._token = token;
   }
 
   _handleResponse = (response) => {
@@ -13,9 +12,6 @@ class Api {
 
   getCards() {
     return fetch(`${this._address}/cards`, {
-      // headers: {
-      //   authorization: this._token
-      // },
       credentials: 'include',
     }).then(this._handleResponse);
   }
@@ -24,7 +20,6 @@ class Api {
     return fetch(`${this._address}/cards`, {
       method: 'POST',
       headers: {
-        // authorization: this._token,
         'Content-type': 'application/json'
       },
       credentials: 'include',
@@ -38,9 +33,6 @@ class Api {
 
   getUser() {
     return fetch(`${this._address}/users/me`, {
-      // headers: {
-      //   authorization: this._token
-      // },
       credentials: 'include',
     }).then(this._handleResponse)
   }
@@ -53,7 +45,6 @@ class Api {
     return fetch(`${this._address}/users/me`, {
       method: 'PATCH',
       headers: {
-        // authorization: this._token,
         'Content-type': 'application/json'
       },
       credentials: 'include',
@@ -68,9 +59,6 @@ class Api {
   deleteCard(_id) {
     return fetch(`${this._address}/cards/${_id}`, {
       method: 'DELETE',
-      // headers: {
-      //   authorization: this._token
-      // },
       credentials: 'include',
     })
     .then(this._handleResponse)
@@ -80,7 +68,6 @@ class Api {
     return fetch(`${this._address}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        // authorization: this._token,
         'Content-type': 'application/json'
       },
       credentials: 'include',
@@ -93,15 +80,22 @@ class Api {
   changeLikeCardStatus(id, isLiked) {
     return fetch(`${this._address}/cards/${id}/likes`, {
       method: isLiked ? 'PUT' : 'DELETE',
-      // headers: {
-      //   authorization: this._token
-      // },
       credentials: 'include',
     })
       .then(this._handleResponse)
   }
+
+  logout() {
+    return fetch(`${this._address}/logout`, {
+      headers: {
+        'Content-type': 'application/json'
+      },
+      credentials: 'include',
+    })
+    .then(this._handleResponse)
+  }
 }
 
-const api = new Api('http://localhost:3002');
+const api = new Api('https://api.mesto.students.nomoredomains.xyz');
 
 export default api;

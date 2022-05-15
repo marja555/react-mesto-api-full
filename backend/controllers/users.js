@@ -119,6 +119,17 @@ const getMe = (req, res, next) => {
     .catch(next);
 };
 
+const logout = (req, res, next) => {
+  User.findById(req.user._id)
+    .then((user) => {
+      if (user) {
+        res.clearCookie('jwt');
+        res.send({ message: 'Выход' });
+      }
+    })
+    .catch(next);
+};
+
 module.exports = {
   getUsers,
   getUser,
@@ -127,4 +138,5 @@ module.exports = {
   updateAvatar,
   login,
   getMe,
+  logout,
 };

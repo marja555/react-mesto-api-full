@@ -3,7 +3,7 @@ const { default: mongoose } = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 
-const { PORT = 3002 } = process.env;
+const { PORT = 3000 } = process.env;
 
 const app = express();
 
@@ -46,11 +46,17 @@ app.use((req, res, next) => {
   return null;
 });
 
-const { login, createUser } = require('./controllers/users');
+const { login, createUser, logout } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { handleError } = require('./errors/handleError');
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -70,6 +76,7 @@ app.post('/signup', celebrate({
 }), createUser);
 
 app.use(auth);
+app.get('/logout', logout);
 
 app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));
