@@ -66,15 +66,19 @@ function App() {
   function handleUpdateUser(currentUser) {
     api.setUserInfo({name: currentUser.name, job: currentUser.about})
       .then((userData) => {
-        setCurrentUser(userData)
+        setCurrentUser((state) => {
+          return { ...state, userData };
+        });
       })
       .catch(err => `Не удалось обновить данные пользователя, ошибка: ${err}`)
   }
 
   function handleUpdateAvatar({avatar}) {
     api.editAvatar({avatar})
-      .then((userData) => {
-        setCurrentUser(userData);
+      .then(({ avatar }) => {
+        setCurrentUser((state) => {
+          return { ...state, avatar };
+        });
       })
       .catch(err => `Не удалось обновить аватар, ошибка: ${err}`)
   }

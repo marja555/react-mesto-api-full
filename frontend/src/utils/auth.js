@@ -47,5 +47,6 @@ class Auth {
         .then(this._handleResponse);
     }
 }
-const auth = new Auth('https://api.mesto.students.nomoredomains.xyz');
+// const auth = new Auth('https://api.mesto.students.nomoredomains.xyz');
+const auth = new Auth('http://localhost:3002');
 export default auth;

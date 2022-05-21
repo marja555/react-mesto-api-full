@@ -96,6 +96,8 @@ class Api {
   }
 }
 
-const api = new Api('https://api.mesto.students.nomoredomains.xyz');
+// const api = new Api('https://api.mesto.students.nomoredomains.xyz');
+
+const api = new Api('http://localhost:3002');
 
 export default api;
