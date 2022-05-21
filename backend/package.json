@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint .",
     "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "deploy": "rm -rf marja555@api.mesto.students.nomoredomains.xyz:/home/marja555/react-mesto-api-full/backend/* && scp -r ./* marja555@api.mesto.students.nomoredomains.xyz:/home/marja555/react-mesto-api-full/backend"
   },
   "repository": {
     "type": "git",
@@ -34,7 +35,7 @@
     "express": "^4.17.3",
     "express-winston": "^4.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.2.10",
+    "mongoose": "^6.3.4",
     "validator": "^13.7.0",
     "winston": "^3.7.2"
   },

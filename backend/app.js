@@ -3,7 +3,7 @@ const { default: mongoose } = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3002 } = process.env;
 
 const app = express();
 
