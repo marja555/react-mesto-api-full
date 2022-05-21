@@ -67,7 +67,7 @@ function App() {
     api.setUserInfo({name: currentUser.name, job: currentUser.about})
       .then((userData) => {
         setCurrentUser((state) => {
-          return { ...state, userData };
+          return { ...state, ...userData };
         });
       })
       .catch(err => `Не удалось обновить данные пользователя, ошибка: ${err}`)
@@ -75,9 +75,9 @@ function App() {
 
   function handleUpdateAvatar({avatar}) {
     api.editAvatar({avatar})
-      .then(({ avatar }) => {
+      .then(( avatar ) => {
         setCurrentUser((state) => {
-          return { ...state, avatar };
+          return { ...state, ...avatar };
         });
       })
       .catch(err => `Не удалось обновить аватар, ошибка: ${err}`)
